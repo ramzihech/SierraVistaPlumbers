@@ -1,614 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Best Plumbers in Sierra Vista, AZ | Sierra Vista Plumbing Pros</title>
-<meta name="description" content="Find the best plumbers in Sierra Vista, AZ. Top-rated, licensed, and insured plumbing services for residential and commercial needs near Cochise County.">
-<meta name="keywords" content="plumber Sierra Vista, plumbing Sierra Vista, plumbers near me, Sierra Vista AZ plumber, emergency plumber">
-<link rel="canonical" href="https://ramzihech.github.io/SierraVistaPlumbers/">
-<style>
-  :root {
-    --ink: #1a1d23;
-    --ink-medium: #4a4f5a;
-    --ink-light: #7c8190;
-    --surface: #ffffff;
-    --surface-subtle: #f6f7f9;
-    --surface-highlight: #edf0f5;
-    --border: #e1e4ea;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --accent-light: #eef2ff;
-    --green: #16a34a;
-    --green-light: #f0fdf4;
-    --amber: #d97706;
-    --amber-light: #fffbeb;
-    --red: #dc2626;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
-    --shadow-md: 0 4px 12px rgba(0,0,0,.07);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,.09);
-    --transition: 200ms cubic-bezier(.4,0,.2,1);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--surface-subtle);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  img { max-width: 100%; height: auto; }
-
-  /* ─── NAV ─── */
-  .nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    max-width: 1120px; margin: 0 auto;
-    display: flex; align-items: center;
-    justify-content: space-between;
-    padding: 0 24px; height: 56px;
-  }
-  .nav-logo {
-    font-weight: 700; font-size: 1.05rem;
-    color: var(--ink); letter-spacing: -.01em;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .nav-logo .mark { color: var(--accent); }
-  .nav-links { display: flex; gap: 24px; align-items: center; }
-  .nav-links a {
-    font-size: .875rem; font-weight: 500; color: var(--ink-medium);
-    transition: color var(--transition);
-  }
-  .nav-links a:hover { color: var(--ink); text-decoration: none; }
-
-  /* ─── HERO ─── */
-  .hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: white; padding: 64px 24px 56px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; letter-spacing: -.02em;
-    line-height: 1.15; margin-bottom: 12px;
-  }
-  .hero p {
-    font-size: 1.05rem; color: #94a3b8;
-    max-width: 560px; margin: 0 auto 28px;
-  }
-  .hero-stats {
-    display: flex; justify-content: center; gap: 40px;
-    flex-wrap: wrap;
-  }
-  .hero-stat { text-align: center; }
-  .hero-stat-num {
-    font-size: 1.5rem; font-weight: 700; color: white;
-    display: block;
-  }
-  .hero-stat-label {
-    font-size: .8rem; color: #64748b;
-    text-transform: uppercase; letter-spacing: .05em;
-  }
-
-  /* ─── FILTERS ─── */
-  .filters {
-    max-width: 1120px; margin: -28px auto 0;
-    padding: 0 24px; position: relative; z-index: 10;
-  }
-  .filters-inner {
-    background: var(--surface);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    padding: 16px 20px;
-    display: flex; gap: 12px; flex-wrap: wrap;
-    align-items: center;
-  }
-  .filter-input {
-    flex: 1; min-width: 200px;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: .875rem;
-    outline: none;
-    transition: border-color var(--transition);
-  }
-  .filter-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
-  .filter-select {
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: .875rem;
-    background: white;
-    outline: none;
-    cursor: pointer;
-  }
-  .filter-count {
-    font-size: .8rem; color: var(--ink-light);
-    margin-left: auto; white-space: nowrap;
-  }
-
-  /* ─── LISTINGS ─── */
-  .listings { max-width: 1120px; margin: 0 auto; padding: 32px 24px 48px; }
-
-  .cards-grid {
-    display: grid; gap: 0;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-  }
-  .card {
-    background: var(--surface);
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    transition: background var(--transition);
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .card:last-child { border-bottom: none; }
-  .card:hover { background: var(--surface-subtle); }
-
-  .card-top {
-    display: flex; align-items: flex-start;
-    justify-content: space-between; gap: 12px;
-  }
-  .card-name {
-    font-size: 1.05rem; font-weight: 600; color: var(--ink);
-  }
-  .card-rating {
-    display: flex; align-items: center; gap: 4px;
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .card-rating .stars { color: #eab308; font-size: .85rem; letter-spacing: 1px; }
-  .card-rating .num { font-size: .8rem; color: var(--ink-light); font-weight: 500; }
-  .card-rating .reviews { font-size: .75rem; color: var(--ink-light); }
-
-  .card-meta {
-    display: flex; flex-wrap: wrap; gap: 6px 16px;
-    font-size: .8rem; color: var(--ink-light);
-  }
-  .card-meta span { display: flex; align-items: center; gap: 4px; }
-
-  .card-tags {
-    display: flex; gap: 6px; flex-wrap: wrap;
-  }
-  .tag {
-    display: inline-flex; align-items: center;
-    padding: 2px 8px; border-radius: 100px;
-    font-size: .7rem; font-weight: 500;
-    background: var(--surface-highlight); color: var(--ink-medium);
-  }
-  .tag-featured {
-    background: var(--amber-light); color: var(--amber);
-    font-weight: 600;
-  }
-  .tag-verified {
-    background: var(--green-light); color: var(--green);
-  }
-
-  .card-actions {
-    display: flex; gap: 8px; margin-top: 4px;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 8px 16px; border-radius: var(--radius-sm);
-    font-size: .8rem; font-weight: 600;
-    border: none; cursor: pointer;
-    transition: all var(--transition);
-    text-decoration: none;
-  }
-  .btn:hover { text-decoration: none; }
-  .btn-primary {
-    background: var(--accent); color: white;
-  }
-  .btn-primary:hover { background: var(--accent-hover); }
-  .btn-outline {
-    background: transparent; color: var(--ink-medium);
-    border: 1px solid var(--border);
-  }
-  .btn-outline:hover { background: var(--surface-highlight); color: var(--ink); }
-
-  /* ─── SECTIONS ─── */
-  .section {
-    max-width: 1120px; margin: 0 auto;
-    padding: 48px 24px 40px;
-  }
-  .section-title {
-    font-size: 1.4rem; font-weight: 700;
-    margin-bottom: 24px; letter-spacing: -.01em;
-  }
-  .section-subtle {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    padding: 28px 32px;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .guide { display: flex; flex-direction: column; gap: 20px; }
-  .guide h3 {
-    font-size: .95rem; font-weight: 600; margin-bottom: 4px;
-  }
-  .guide p {
-    font-size: .875rem; color: var(--ink-medium);
-    line-height: 1.6;
-  }
-
-  /* FAQ */
-  .faq-list { border-top: 1px solid var(--border); }
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
-  .faq-q {
-    padding: 16px 0;
-    font-size: .9rem; font-weight: 500;
-    display: flex; justify-content: space-between; align-items: center;
-    user-select: none;
-  }
-  .faq-q::after {
-    content: '+'; font-size: 1.1rem; color: var(--ink-light);
-    transition: transform var(--transition);
-  }
-  .faq-item.open .faq-q::after { content: '−'; }
-  .faq-a {
-    display: none;
-    font-size: .85rem; color: var(--ink-medium);
-    line-height: 1.6; padding-bottom: 16px;
-  }
-  .faq-item.open .faq-a { display: block; }
-
-  /* ─── CONTACT ─── */
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-  }
-  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
-  .contact-info h3 {
-    font-size: 1rem; font-weight: 600; margin-bottom: 8px;
-  }
-  .contact-info p {
-    font-size: .85rem; color: var(--ink-medium);
-    line-height: 1.6;
-  }
-  .contact-form input,
-  .contact-form textarea,
-  .contact-form select {
-    width: 100%; padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: .875rem; margin-bottom: 12px;
-    font-family: inherit; outline: none;
-  }
-  .contact-form input:focus,
-  .contact-form textarea:focus,
-  .contact-form select:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-light);
-  }
-  .contact-form textarea { resize: vertical; min-height: 100px; }
-  .contact-form button {
-    width: 100%;
-    padding: 11px; border: none; border-radius: var(--radius-sm);
-    background: var(--accent); color: white;
-    font-size: .9rem; font-weight: 600; cursor: pointer;
-    transition: background var(--transition);
-  }
-  .contact-form button:hover { background: var(--accent-hover); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--ink);
-    color: #94a3b8;
-    text-align: center;
-    padding: 28px 24px;
-    font-size: .8rem;
-  }
-  footer a { color: #60a5fa; }
-
-  /* ─── NO RESULTS ─── */
-  .no-results {
-    text-align: center; padding: 40px 24px;
-    color: var(--ink-light);
-  }
-  .no-results h3 { font-weight: 600; margin-bottom: 4px; color: var(--ink-medium); }
-
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 600px) {
-    .nav-inner { padding: 0 16px; }
-    .nav-links { gap: 16px; }
-    .hero { padding: 40px 16px 48px; }
-    .hero-stats { gap: 24px; }
-    .filters { padding: 0 16px; }
-    .filters-inner { flex-direction: column; align-items: stretch; }
-    .filter-count { margin-left: 0; }
-    .listings { padding: 24px 16px; }
-    .card { padding: 16px; }
-    .card-top { flex-direction: column; }
-    .section { padding: 32px 16px; }
-    .section-subtle { padding: 20px; }
-    .card-actions { flex-wrap: wrap; }
-    .btn { flex: 1; justify-content: center; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Plumbers in Sierra Vista, AZ</title>
+    <meta name="description" content="Find the best plumbers in Sierra Vista, AZ. Top-rated, licensed, and insured plumber services for residential and commercial needs.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%); color: white; padding: 60px 0 40px; text-align: center; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        nav { background: #2d3748; padding: 12px 0; position: sticky; top: 0; z-index: 100; }
+        nav .container { display: flex; gap: 25px; flex-wrap: wrap; }
+        nav a { color: #e2e8f0; text-decoration: none; font-size: 0.95rem; padding: 5px 0; }
+        nav a:hover { color: white; }
+        section { padding: 40px 0; }
+        section h2 { font-size: 1.8rem; margin-bottom: 25px; color: #1a365d; }
+        .plumber-card { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #e2e8f0; }
+        .plumber-card.featured { border-left-color: #f6ad55; }
+        .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; flex-wrap: wrap; }
+        .card-header h3 { font-size: 1.2rem; color: #1a365d; flex: 1; }
+        .rating { color: #f6ad55; font-size: 1.1rem; }
+        .rating-num { color: #718096; font-size: 0.9rem; margin-left: 5px; }
+        .featured-badge { background: #fefcbf; color: #744210; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .description { color: #4a5568; margin-bottom: 12px; }
+        .card-details { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; color: #718096; margin-bottom: 15px; }
+        .card-details a { color: #3182ce; text-decoration: none; }
+        .card-actions { display: flex; gap: 10px; }
+        .btn { padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .btn-call { background: #38a169; color: white; }
+        .btn-call:hover { background: #2f855a; }
+        .btn-quote { background: #3182ce; color: white; }
+        .btn-quote:hover { background: #2b6cb0; }
+        
+        .guide-content, .faq-section, .contact-section { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .faq-item { cursor: pointer; padding: 15px 0; border-bottom: 1px solid #edf2f7; }
+        .faq-item h3 { font-size: 1rem; color: #1a365d; }
+        .faq-item .answer { display: none; margin-top: 8px; color: #4a5568; }
+        .faq-item.open .answer { display: block; }
+        .faq-item:last-child { border-bottom: none; }
+        
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .blog-card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-decoration: none; color: inherit; display: block; }
+        .blog-card h3 { color: #1a365d; font-size: 1.05rem; margin-bottom: 10px; }
+        .blog-card p { color: #4a5568; font-size: 0.9rem; }
+        .blog-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); transition: all 0.2s; }
+        
+        .contact-form { max-width: 600px; margin: 0 auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 1rem; }
+        .contact-form textarea { min-height: 120px; }
+        .contact-form button { background: #3182ce; color: white; border: none; padding: 12px 30px; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+        .contact-form button:hover { background: #2b6cb0; }
+        footer { background: #1a202c; color: #a0aec0; text-align: center; padding: 30px 0; font-size: 0.9rem; }
+        footer a { color: #63b3ed; text-decoration: none; }
+        @media (max-width: 768px) { header h1 { font-size: 1.8rem; } .card-header { flex-direction: column; align-items: flex-start; } }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <span class="mark">⏚</span> Sierra Vista <span style="color:var(--ink-light);font-weight:400;">Plumbing Pros</span>
+<header>
+    <div class="container">
+        <h1>🔧 Best Plumbers in Sierra Vista, AZ</h1>
+        <p>Your trusted source for top-rated plumber services in Sierra Vista, AZ</p>
     </div>
-    <div class="nav-links">
-      <a href="#listings">Plumbers</a>
-      <a href="#guide">Guide</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+</header>
+
+<nav>
+    <div class="container">
+        <a href="#listings">Listings</a>
+        <a href="#guide">Guide</a>
+        <a href="#blog">Blog</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
     </div>
-  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Best Plumbers in Sierra Vista, AZ</h1>
-  <p>Your trusted directory of top-rated, licensed plumbing professionals serving Sierra Vista and Cochise County.</p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="hero-stat-num" id="totalCount">17</span>
-      <span class="hero-stat-label">Listed Plumbers</span>
+<section id="listings">
+    <div class="container">
+        <h2>🏆 Top-Rated Plumbers in Sierra Vista</h2>
+        <p style="margin-bottom: 20px; color: #718096;">Last updated: June 06, 2026</p>
+        
+    <div class="plumber-card featured">
+        <div class="card-header">
+            <h3>Integrity Plumbing Solutions</h3>
+            <div class="rating">★★★★★<span style='color:#e2e8f0;'></span> <span class="rating-num">5.0</span></div>
+            <span class="featured-badge">⭐ Featured</span>
+        </div>
+        <p class="description">Integrity Plumbing Solutions is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 5138 Galileo Dr, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 280-4132">(520) 280-4132</a></span>
+            <span>🌐 <a href="https://integrityplumbingsolutionsaz.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 280-4132" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
     </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num" id="avgRating">4.5</span>
-      <span class="hero-stat-label">Average Rating</span>
+    <div class="plumber-card featured">
+        <div class="card-header">
+            <h3>Sierra Sewer & Drain Services</h3>
+            <div class="rating">★★★★★<span style='color:#e2e8f0;'></span> <span class="rating-num">5.0</span></div>
+            <span class="featured-badge">⭐ Featured</span>
+        </div>
+        <p class="description">Sierra Sewer & Drain Services is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 43 NW Cargil Pl, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 458-9462">(520) 458-9462</a></span>
+            
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 458-9462" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
     </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">24/7</span>
-      <span class="hero-stat-label">Emergency Service</span>
+    <div class="plumber-card featured">
+        <div class="card-header">
+            <h3>Struse Plumbing & Air Inc</h3>
+            <div class="rating">★★★★★<span style='color:#e2e8f0;'></span> <span class="rating-num">5.0</span></div>
+            <span class="featured-badge">⭐ Featured</span>
+        </div>
+        <p class="description">Struse Plumbing & Air Inc is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 77 Calle Portal suite B 260K, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 226-9760">(520) 226-9760</a></span>
+            
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 226-9760" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
     </div>
-  </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Afterhours Services</h3>
+            <div class="rating">★★★★★<span style='color:#e2e8f0;'></span> <span class="rating-num">5.0</span></div>
+            
+        </div>
+        <p class="description">Afterhours Services is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 112 W Cyr Center box#3, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 459-5257">(520) 459-5257</a></span>
+            
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 459-5257" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Vista Pros Heating & Cooling, Inc.</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.9</span></div>
+            
+        </div>
+        <p class="description">Vista Pros Heating & Cooling, Inc. is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 8 Corral Rd, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 497-5560">(520) 497-5560</a></span>
+            <span>🌐 <a href="https://vista-pros.com/?utm_source=google_business_listing&utm_medium=organic&utm_campaign=click_to_website" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 497-5560" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Rite Way Heating, Cooling & Plumbing</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.9</span></div>
+            
+        </div>
+        <p class="description">Rite Way Heating, Cooling & Plumbing is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 4551 S Alvernon Way, Tucson, AZ 85714, USA</span>
+            <span>📞 <a href="tel:(520) 314-5053">(520) 314-5053</a></span>
+            <span>🌐 <a href="https://ritewayac.com/?utm_source=google&utm_medium=gmb&utm_campaign=smp_gmb_tucson" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 314-5053" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Qualified Comfort Air Conditioning and Heating</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.9</span></div>
+            
+        </div>
+        <p class="description">Qualified Comfort Air Conditioning and Heating is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 111 N Huachuca Blvd, Huachuca City, AZ 85616, USA</span>
+            <span>📞 <a href="tel:(520) 236-0585">(520) 236-0585</a></span>
+            <span>🌐 <a href="https://qualifiedcomforthvac.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 236-0585" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Struse Plumbing & Air Inc</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.8</span></div>
+            
+        </div>
+        <p class="description">Struse Plumbing & Air Inc is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 4029 AZ-92, Sierra Vista, AZ 85650, USA</span>
+            <span>📞 <a href="tel:(520) 378-1367">(520) 378-1367</a></span>
+            <span>🌐 <a href="https://www.struseplumbing.net/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 378-1367" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Rite Way Heating, Cooling & Plumbing: Sierra Vista</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.8</span></div>
+            
+        </div>
+        <p class="description">Rite Way Heating, Cooling & Plumbing: Sierra Vista is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 131 S Schrader Rd, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 415-5681">(520) 415-5681</a></span>
+            <span>🌐 <a href="https://ritewayac.com/areas-we-serve/sierra-vista-az/?utm_source=google&utm_medium=gmb&utm_campaign=smp_gmb_sierra_vista" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 415-5681" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Mr. Fix It of Sierra Vista</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.8</span></div>
+            
+        </div>
+        <p class="description">Mr. Fix It of Sierra Vista is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 121 6th St, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 227-8194">(520) 227-8194</a></span>
+            <span>🌐 <a href="http://www.mrfixitsv.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=9819094525820438418" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 227-8194" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Eagle Plumbing 1 LLC</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.7</span></div>
+            
+        </div>
+        <p class="description">Eagle Plumbing 1 LLC is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 87 W Camino De Mesa, Huachuca City, AZ 85616, USA</span>
+            <span>📞 <a href="tel:(520) 720-4675">(520) 720-4675</a></span>
+            <span>🌐 <a href="https://www.eagleplumbingaz.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 720-4675" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Sierra Vista Plumbing, Inc.</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.5</span></div>
+            
+        </div>
+        <p class="description">Sierra Vista Plumbing, Inc. is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 4847 AZ-92, Sierra Vista, AZ 85650, USA</span>
+            <span>📞 <a href="tel:(520) 417-2105">(520) 417-2105</a></span>
+            <span>🌐 <a href="https://sierravistaplumbing.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 417-2105" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Cliff's Classic Care Plumbing, LLC</h3>
+            <div class="rating">★★★★½<span style='color:#e2e8f0;'></span> <span class="rating-num">4.4</span></div>
+            
+        </div>
+        <p class="description">Cliff's Classic Care Plumbing, LLC is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 2117 Laurel Ln, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 266-0051">(520) 266-0051</a></span>
+            <span>🌐 <a href="http://www.cliffsclassiccareplumbing.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 266-0051" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Roto-Rooter Sewer & Drain Service</h3>
+            <div class="rating">★★★★<span style='color:#e2e8f0;'>★</span> <span class="rating-num">4.2</span></div>
+            
+        </div>
+        <p class="description">Roto-Rooter Sewer & Drain Service is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 129 6th St, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 458-9296">(520) 458-9296</a></span>
+            <span>🌐 <a href="http://www.rotorootersewerndrainsvc.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 458-9296" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Precision Plumbing</h3>
+            <div class="rating">★★★★<span style='color:#e2e8f0;'>★</span> <span class="rating-num">4.2</span></div>
+            
+        </div>
+        <p class="description">Precision Plumbing is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 7024 Valley Dr, Sierra Vista, AZ 85650, USA</span>
+            <span>📞 <a href="tel:(520) 378-7071">(520) 378-7071</a></span>
+            
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 378-7071" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Huachuca Plumbing LLC</h3>
+            <div class="rating">★★★½<span style='color:#e2e8f0;'>★</span> <span class="rating-num">3.6</span></div>
+            
+        </div>
+        <p class="description">Huachuca Plumbing LLC is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 5017 AZ-92, Sierra Vista, AZ 85650, USA</span>
+            <span>📞 <a href="tel:(520) 459-6303">(520) 459-6303</a></span>
+            <span>🌐 <a href="http://huachucaplumbing.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 459-6303" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Raul's Plumbing Llc</h3>
+            <div class="rating">★★★<span style='color:#e2e8f0;'>★★</span> <span class="rating-num">3.0</span></div>
+            
+        </div>
+        <p class="description">Raul's Plumbing Llc is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 226-9453">(520) 226-9453</a></span>
+            
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 226-9453" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    <div class="plumber-card">
+        <div class="card-header">
+            <h3>Harvey Plumbing, Inc.</h3>
+            <div class="rating">★★★<span style='color:#e2e8f0;'>★★</span> <span class="rating-num">3.0</span></div>
+            
+        </div>
+        <p class="description">Harvey Plumbing, Inc. is a trusted plumbing service in Sierra Vista, AZ. They offer reliable residential and commercial plumbing solutions. Licensed and insured with a commitment to quality workmanship.</p>
+        <div class="card-details">
+            <span>📍 5100 East AZ-90 E, Sierra Vista, AZ 85635, USA</span>
+            <span>📞 <a href="tel:(520) 378-3154">(520) 378-3154</a></span>
+            <span>🌐 <a href="http://www.harveyplumbing.com/" target="_blank" rel="noopener">Website</a></span>
+        </div>
+        <div class="card-actions">
+            <a href="tel:(520) 378-3154" class="btn btn-call">Call Now</a>
+            <a href="#contact" class="btn btn-quote">Get Quote</a>
+        </div>
+    </div>
+    </div>
 </section>
 
-<!-- FILTERS -->
-<div class="filters">
-  <div class="filters-inner">
-    <input type="text" class="filter-input" id="searchInput" placeholder="Search plumbers by name, service, or address..." autocomplete="off">
-    <select class="filter-select" id="sortSelect">
-      <option value="rating-desc">Highest Rated</option>
-      <option value="rating-asc">Lowest Rated</option>
-      <option value="name">A–Z</option>
-      <option value="reviews">Most Reviews</option>
-    </select>
-    <span class="filter-count" id="filterCount">Showing 17</span>
-  </div>
-</div>
-
-<!-- LISTINGS -->
-<section class="listings" id="listings">
-  <div class="cards-grid" id="cardsGrid"></div>
+<section id="guide" style="background: #edf2f7;">
+    <div class="container">
+        <h2>📖 How to Choose a Plumber in Sierra Vista</h2>
+        <div class="guide-content">
+            <p>Finding the right plumber in Sierra Vista doesn't have to be stressful. Here are some tips:</p>
+            <h3>1. Check Licensing and Insurance</h3>
+            <p>Always verify that your plumber is licensed and insured. In Arizona, the Registrar of Contractors handles licensing.</p>
+            <h3>2. Read Reviews</h3>
+            <p>Check Google, Yelp, and BBB ratings. Look for consistent 4+ star reviews.</p>
+            <h3>3. Get Multiple Quotes</h3>
+            <p>For non-emergency work, get at least 3 quotes. Be wary of extremely low bids.</p>
+            <h3>4. Ask About Experience</h3>
+            <p>Different jobs require different expertise. Ask how many similar projects they've completed.</p>
+            <h3>5. Check Availability</h3>
+            <p>Emergencies happen. A plumber with 24/7 service can save you thousands in damage.</p>
+        </div>
+    </div>
 </section>
 
-<!-- GUIDE -->
-<section class="section" id="guide">
-  <h2 class="section-title">How to Choose a Plumber in Sierra Vista</h2>
-  <div class="section-subtle guide">
-    <div>
-      <h3>1. Check Licensing & Insurance</h3>
-      <p>In Arizona, the Registrar of Contractors (ROC) licenses all professional plumbers. Always verify a valid license number before hiring. This protects you if something goes wrong.</p>
+<section id="blog">
+    <div class="container">
+        <h2>📝 Sierra Vista Plumber Blog</h2>
+        <div class="blog-grid">
+            
+            <a href="#" class="blog-card">
+                <h3>Coming Soon</h3>
+                <p>Blog posts on Tucson plumbing tips, DIY guides, and local recommendations are on the way.</p>
+            </a>
+        </div>
     </div>
-    <div>
-      <h3>2. Read Local Reviews</h3>
-      <p>Sierra Vista is a tight-knit community. Check Google reviews and ask neighbors. A plumber with consistent 4+ star ratings and 50+ reviews has proven their reliability locally.</p>
-    </div>
-    <div>
-      <h3>3. Get 3 Quotes</h3>
-      <p>For non-emergency work, always get multiple bids. Be wary of prices far below market rate — they often lead to upcharges or poor workmanship. Most Sierra Vista plumbers offer free estimates.</p>
-    </div>
-    <div>
-      <h3>4. Ask About Emergency Service</h3>
-      <p>Plumbing emergencies don't wait. A burst pipe at 2am needs immediate attention. Many Sierra Vista plumbers offer 24/7 service — confirm availability before you need it.</p>
-    </div>
-    <div>
-      <h3>5. Know the Local Terrain</h3>
-      <p>Southern Arizona has unique plumbing challenges: hard water buildup, monsoon drainage issues, and slab foundations that complicate repiping. Local plumbers understand these conditions best.</p>
-    </div>
-  </div>
 </section>
 
-<!-- FAQ -->
-<section class="section" id="faq">
-  <h2 class="section-title">Frequently Asked Questions</h2>
-  <div class="section-subtle">
-    <div class="faq-list">
-      <div class="faq-item open">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does a plumber cost in Sierra Vista?</div>
-        <div class="faq-a">Small repairs typically range from $150–400. Larger projects like water heater replacement run $800–2,500. Major repiping can cost $3,000–8,000. Always get a written estimate before work begins.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are the plumbers on this site licensed?</div>
-        <div class="faq-a">Yes. All plumbers listed are licensed and insured in the state of Arizona. We recommend verifying their ROC license number before hiring. You can check at the Arizona Registrar of Contractors website.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do Sierra Vista plumbers offer emergency service?</div>
-        <div class="faq-a">Many do. Plumbers serving Fort Huachuca and the surrounding area often provide 24/7 emergency call-out for burst pipes, sewer backups, and other urgent issues. Call ahead to confirm availability.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I know if I need a plumber or a handyman?</div>
-        <div class="faq-a">For minor tasks like replacing a faucet or unclogging a sink, a handyman may suffice. For any work involving water lines, sewer lines, water heaters, or gas lines, always hire a licensed plumber. Incorrect work can cause thousands in damage.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How quickly can I get a plumber in Sierra Vista?</div>
-        <div class="faq-a">Most local plumbers offer same-day or next-day service for non-emergency calls. Emergency services typically arrive within 1–2 hours. Call times may vary during monsoon season or holidays.</div>
-      </div>
+<section id="faq" style="background: #edf2f7;">
+    <div class="container">
+        <h2>❓ Frequently Asked Questions</h2>
+        <div class="faq-section">
+            <div class="faq-item open" onclick="this.classList.toggle('open')">
+                <h3>How much does a plumber cost in Sierra Vista?</h3>
+                <div class="answer">Prices vary by job. Small repairs typically range from $150-400, while larger projects can cost $1,000-5,000. Get multiple quotes for the best value.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <h3>Are these plumbers licensed?</h3>
+                <div class="answer">All plumbers listed on our site are licensed and insured in the state of Arizona. We recommend confirming directly before hiring.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <h3>Do they offer emergency service?</h3>
+                <div class="answer">Many of the plumbers listed offer 24/7 emergency service. Check individual listings for availability.</div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <h2 class="section-title">Get a Free Quote</h2>
-  <div class="section-subtle">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Have a plumbing problem?</h3>
-        <p>Tell us what you need and we'll connect you with the right Sierra Vista plumber. We'll match you based on your job type, location, and urgency — for free.</p>
-        <p style="margin-top:16px;font-size:.8rem;color:var(--ink-light);">Your information is never shared without your permission.</p>
-      </div>
-      <form class="contact-form" action="https://formsubmit.co/gloaminggallery@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Your email" required>
-        <input type="tel" name="phone" placeholder="Your phone number">
-        <select name="service">
-          <option value="">Select service needed...</option>
-          <option>Emergency repair</option>
-          <option>Water heater</option>
-          <option>Drain cleaning</option>
-          <option>Sewer line</option>
-          <option>Pipe repair</option>
-          <option>Remodel / new construction</option>
-          <option>Other</option>
-        </select>
-        <textarea name="message" placeholder="Describe your plumbing issue..." required></textarea>
-        <input type="hidden" name="_subject" value="Sierra Vista Plumbing Quote Request">
-        <input type="hidden" name="_captcha" value="false">
-        <button type="submit">Request Free Quote</button>
-      </form>
+<section id="contact">
+    <div class="container">
+        <h2>📬 Get a Free Quote</h2>
+        <div class="contact-section">
+            <div class="contact-form">
+                <form action="https://formsubmit.co/gloaminggallery@gmail.com" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="tel" name="phone" placeholder="Your Phone">
+                    <textarea name="message" placeholder="Describe what you need..." required></textarea>
+                    <input type="hidden" name="_subject" value="Sierra Vista Plumber Quote Request">
+                    <input type="hidden" name="_captcha" value="false">
+                    <button type="submit">Request Free Quote</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <footer>
-  <p>Sierra Vista Plumbing Pros &mdash; Helping homeowner's find trusted plumbers in Cochise County</p>
-  <p style="margin-top:8px;">&copy; 2025 &middot; <a href="#listings">Browse Plumbers</a> &middot; <a href="#contact">Get a Quote</a></p>
+    <div class="container">
+        <p>Best Plumbers in Sierra Vista, AZ | Helping Sierra Vista homeowners find trusted plumber services</p>
+        <p>© 2025 — <a href="#listings">Browse Plumbers</a> | <a href="#contact">Get a Quote</a></p>
+    </div>
 </footer>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────
-const allPlumbers = [
-  { "name": "Integrity Plumbing Solutions", "address": "5138 Galileo Dr, Sierra Vista, AZ 85635", "rating": 5.0, "reviews": 58, "phone": "(520) 280-4132", "website": "https://integrityplumbingsolutionsaz.com/", "featured": true },
-  { "name": "Sierra Sewer & Drain Services", "address": "43 NW Cargil Pl, Sierra Vista, AZ 85635", "rating": 5.0, "reviews": 7, "phone": "(520) 458-9462", "website": "", "featured": true },
-  { "name": "Afterhours Services", "address": "112 W Cyr Center box#3, Sierra Vista, AZ 85635", "rating": 5.0, "reviews": 82, "phone": "(520) 459-5257", "website": "", "featured": true },
-  { "name": "Struse Plumbing & Air Inc", "address": "77 Calle Portal suite B 260K, Sierra Vista, AZ 85635", "rating": 5.0, "reviews": 5, "phone": "(520) 226-9760", "website": "", "featured": false },
-  { "name": "Vista Pros Heating & Cooling, Inc.", "address": "8 Corral Rd, Sierra Vista, AZ 85635", "rating": 4.9, "reviews": 729, "phone": "(520) 497-5560", "website": "https://vista-pros.com/", "featured": false },
-  { "name": "Qualified Comfort Air Conditioning and Heating", "address": "111 N Huachuca Blvd, Huachuca City, AZ 85616", "rating": 4.9, "reviews": 120, "phone": "(520) 236-0585", "website": "https://qualifiedcomforthvac.com/", "featured": false },
-  { "name": "Rite Way Heating, Cooling & Plumbing", "address": "4551 S Alvernon Way, Tucson, AZ 85714", "rating": 4.9, "reviews": 12793, "phone": "(520) 314-5053", "website": "https://ritewayac.com/", "featured": false },
-  { "name": "Struse Plumbing & Air Inc", "address": "4029 AZ-92, Sierra Vista, AZ 85650", "rating": 4.8, "reviews": 208, "phone": "(520) 378-1367", "website": "https://www.struseplumbing.net/", "featured": false },
-  { "name": "Rite Way Heating, Cooling & Plumbing: Sierra Vista", "address": "131 S Schrader Rd, Sierra Vista, AZ 85635", "rating": 4.8, "reviews": 1128, "phone": "(520) 415-5681", "website": "https://ritewayac.com/areas-we-serve/sierra-vista-az/", "featured": false },
-  { "name": "Mr. Fix It of Sierra Vista", "address": "121 6th St, Sierra Vista, AZ 85635", "rating": 4.8, "reviews": 243, "phone": "(520) 227-8194", "website": "http://www.mrfixitsv.com/", "featured": false },
-  { "name": "Eagle Plumbing 1 LLC", "address": "87 W Camino De Mesa, Huachuca City, AZ 85616", "rating": 4.7, "reviews": 162, "phone": "(520) 720-4675", "website": "https://www.eagleplumbingaz.com/", "featured": false },
-  { "name": "Sierra Vista Plumbing, Inc.", "address": "4847 AZ-92, Sierra Vista, AZ 85650", "rating": 4.5, "reviews": 102, "phone": "(520) 417-2105", "website": "https://sierravistaplumbing.com/", "featured": false },
-  { "name": "Cliff's Classic Care Plumbing, LLC", "address": "2117 Laurel Ln, Sierra Vista, AZ 85635", "rating": 4.4, "reviews": 40, "phone": "(520) 266-0051", "website": "http://www.cliffsclassiccareplumbing.com/", "featured": false },
-  { "name": "Roto-Rooter Sewer & Drain Service", "address": "129 6th St, Sierra Vista, AZ 85635", "rating": 4.2, "reviews": 35, "phone": "(520) 458-9296", "website": "http://www.rotorootersewerndrainsvc.com/", "featured": false },
-  { "name": "Precision Plumbing", "address": "7024 Valley Dr, Sierra Vista, AZ 85650", "rating": 4.2, "reviews": 5, "phone": "(520) 378-7071", "website": "", "featured": false },
-  { "name": "Huachuca Plumbing LLC", "address": "5017 AZ-92, Sierra Vista, AZ 85650", "rating": 3.6, "reviews": 29, "phone": "(520) 459-6303", "website": "http://huachucaplumbing.com/", "featured": false },
-  { "name": "Raul's Plumbing Llc", "address": "Sierra Vista, AZ 85635", "rating": 3.0, "reviews": 2, "phone": "(520) 226-9453", "website": "", "featured": false }
-];
-
-// ─── RENDER ──────────────────────────────────────────────────────────────
-function renderStars(rating) {
-  const full = Math.floor(rating);
-  const half = rating - full >= 0.3 ? 1 : 0;
-  const empty = 5 - full - half;
-  return '★'.repeat(full) + (half ? '½' : '') + '<span style="color:#d1d5db;">' + '★'.repeat(empty) + '</span>';
-}
-
-function getCard(p) {
-  const tags = [];
-  if (p.featured) tags.push('<span class="tag tag-featured">⭐ Featured</span>');
-  if (p.reviews >= 50) tags.push('<span class="tag tag-verified">✓ Verified</span>');
-  if (p.website) tags.push('<span class="tag">Has Website</span>');
-
-  const phone = p.phone || '';
-  const phoneLink = phone ? `tel:${phone}` : '#contact';
-  const phoneDisplay = phone || 'Call for number';
-
-  return `<div class="card">
-    <div class="card-top">
-      <div>
-        <div class="card-name">${p.name}</div>
-        <div class="card-meta">
-          <span>📍 ${p.address}</span>
-          ${phone ? `<span>📞 ${phone}</span>` : ''}
-        </div>
-      </div>
-      <div class="card-rating">
-        <span class="stars">${renderStars(p.rating)}</span>
-        <span class="num">${p.rating.toFixed(1)}</span>
-        <span class="reviews">(${p.reviews})</span>
-      </div>
-    </div>
-    ${tags.length ? `<div class="card-tags">${tags.join('')}</div>` : ''}
-    <div class="card-actions">
-      <a href="${phoneLink}" class="btn btn-primary">📞 Call Now</a>
-      ${p.website ? `<a href="${p.website}" target="_blank" rel="noopener" class="btn btn-outline">🌐 Website</a>` : ''}
-      <a href="#contact" class="btn btn-outline">Get Quote</a>
-    </div>
-  </div>`;
-}
-
-function render(filtered) {
-  const grid = document.getElementById('cardsGrid');
-  if (!filtered.length) {
-    grid.innerHTML = `<div class="no-results"><h3>No plumbers found</h3><p>Try a different search term</p></div>`;
-    return;
-  }
-  grid.innerHTML = filtered.map(getCard).join('');
-}
-
-function getFiltered() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const sort = document.getElementById('sortSelect').value;
-
-  let list = allPlumbers.slice();
-
-  if (q) {
-    list = list.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      p.address.toLowerCase().includes(q) ||
-      p.phone.includes(q)
-    );
-  }
-
-  list.sort((a, b) => {
-    if (sort === 'rating-desc') return (b.rating || 0) - (a.rating || 0);
-    if (sort === 'rating-asc') return (a.rating || 0) - (b.rating || 0);
-    if (sort === 'name') return a.name.localeCompare(b.name);
-    if (sort === 'reviews') return (b.reviews || 0) - (a.reviews || 0);
-    return 0;
-  });
-
-  return list;
-}
-
-function update() {
-  const list = getFiltered();
-  render(list);
-  document.getElementById('filterCount').textContent = `Showing ${list.length}`;
-}
-
-document.getElementById('searchInput').addEventListener('input', update);
-document.getElementById('sortSelect').addEventListener('change', update);
-
-// Initial render
-update();
-
-// ─── HERO STATS ──────────────────────────────────────────────────────────
-document.getElementById('totalCount').textContent = allPlumbers.length;
-const avg = allPlumbers.reduce((s, p) => s + p.rating, 0) / allPlumbers.length;
-document.getElementById('avgRating').textContent = avg.toFixed(1);
+    document.querySelector('.faq-item')?.classList.add('open');
 </script>
 
 </body>
