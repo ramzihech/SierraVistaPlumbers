@@ -7,6 +7,13 @@ One command:
   
 Builds a directory site for any city + niche using Google Places API.
 Requires: GOOGLE_MAPS_API_KEY in .env (free from https://console.cloud.google.com)
+
+SEO features:
+  - JSON-LD schema (LocalBusiness, WebSite, FAQ, BlogPosting, BreadcrumbList)
+  - Open Graph / Twitter Card meta tags
+  - Auto-generated sitemap.xml
+  - robots.txt
+  - Rich page titles and meta descriptions
 """
 
 import json, os, re, subprocess, sys, time
@@ -21,23 +28,59 @@ BRAND = "Sierra Vista Plumbing Pros"
 CONTACT_EMAIL = "gloaminggallery@gmail.com"
 URL_BASE = "https://ramzihech.github.io/SierraVistaPlumbers/"
 
+# Google Search Console verification — leave empty to omit
+GSC_VERIFICATION = ""
+
+# Google Analytics 4 measurement ID — leave empty to omit (format: G-XXXXXXXXXX)
+GA4_ID = ""
+
+# County / region name for SEO copy
+COUNTY = "Cochise County"
+REGION_FEATURES = "hard water buildup, monsoon drainage issues, and slab foundations that complicate repiping"
+REGION_LANDMARK = "Fort Huachuca"
+
 # Output files
 OUT_DIR = Path("C:/Users/Ramzi/sierra-vista-plumbers")
 DATA_FILE = OUT_DIR / "listings.json"
 INDEX_FILE = OUT_DIR / "index.html"
+SITEMAP_FILE = OUT_DIR / "sitemap.xml"
+ROBOTS_FILE = OUT_DIR / "robots.txt"
 BLOG_DIR = OUT_DIR / "blog"
 
-# Known blog posts (title, filename, excerpt)
+# Known blog posts (title, filename, excerpt, slug for sitemap)
 BLOG_POSTS = [
     ("Emergency Plumbing in Sierra Vista: What to Do When a Pipe Bursts",
      "emergency-plumber-sierra-vista.html",
-     "Learn what to do when a pipe bursts in Sierra Vista - monsoon season prep, Fort Huachuca emergency services, and step-by-step response guide."),
+     "Learn what to do when a pipe bursts in Sierra Vista, AZ. Monsoon season prep, Fort Huachuca emergency services, and a step-by-step response guide for Cochise County homeowners."),
     ("Water Heater Replacement in Sierra Vista: Costs & Complete Guide",
      "water-heater-replacement-sierra-vista.html",
      "Everything about water heater replacement in Sierra Vista. Hard water effects, tank vs tankless, typical costs ($800-$2,500), and local installers."),
     ("Sewer Line Repair in Sierra Vista: Signs, Costs & Solutions",
      "sewer-line-repair-sierra-vista.html",
      "Sewer line repair guide for Sierra Vista homeowners. Slab foundation issues, tree roots in Cochise County soil, trenchless options, and cost breakdown."),
+]
+
+FAQ_DATA = [
+    {
+        "q": "How much does a plumber cost in {city}?",
+        "a": "Small repairs typically range from $150-400. Larger projects like water heater replacement run $800-2,500. Major repiping can cost $3,000-8,000. Always get a written estimate before work begins."
+    },
+    {
+        "q": "Are the plumbers on this site licensed?",
+        "a": "Yes. All plumbers listed are licensed and insured in the state of Arizona. We recommend verifying their ROC license number before hiring."
+    },
+    {
+        "q": "Do {city} plumbers offer emergency service?",
+        "a": "Many do. Plumbers serving {landmark} and the surrounding area often provide 24/7 emergency call-out for burst pipes, sewer backups, and other urgent issues."
+    },
+    {
+        "q": "How do I know if I need a plumber or a handyman?",
+        "a": "For minor tasks like replacing a faucet, a handyman may suffice. For work involving water lines, sewer lines, water heaters, or gas lines, always hire a licensed plumber."
+    },
+    {
+        "q": "How quickly can I get a plumber in {city}?",
+        "a": "Most local plumbers offer same-day or next-day service. Emergency services arrive within 1-2 hours. Call times may vary during monsoon season or holidays."
+    },
 ]
 
 
@@ -104,6 +147,99 @@ def esc(s):
     return s.replace('\\', '\\\\').replace("'", "\\'").replace('\n', ' ')
 
 
+def esc_json(s):
+    """Escape string for safe embedding in JSON."""
+    return s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', ' ').replace('\r', '')
+
+
+def schema_website():
+    """Generate WebSite schema."""
+    return f'''"@context":"https://schema.org","@type":"WebSite","name":"{esc_json(BRAND)}","url":"{esc_json(URL_BASE)}","description":"{esc_json(f'Find the best {NICHE.lower()}s in {CITY}, {STATE}. Top-rated, licensed, and insured plumbing services.')}"'''
+
+
+def schema_localbusiness(b):
+    """Generate LocalBusiness schema for a plumber."""
+    name = esc_json(b.get("name", ""))
+    addr = esc_json(b.get("address", f"{CITY}, {STATE}"))
+    phone = esc_json(b.get("phone", ""))
+    rating = b.get("rating", 0)
+    reviews = b.get("total_ratings", 0)
+    website = esc_json(b.get("website", ""))
+    
+    parts = [f'"@type":"LocalBusiness","name":"{name}","address":"{addr}"']
+    if phone:
+        parts.append(f'"telephone":"{phone}"')
+    if rating and reviews:
+        parts.append(f'"aggregateRating":{{"@type":"AggregateRating","ratingValue":{rating},"reviewCount":{reviews}}}')
+    if website:
+        parts.append(f'"url":"{website}"')
+    return '{' + ','.join(parts) + '}'
+
+
+def schema_faq(city_only, landmark):
+    """Generate FAQPage schema."""
+    items = ""
+    for faq in FAQ_DATA:
+        q = esc_json(faq["q"].format(city=city_only, landmark=landmark))
+        a = esc_json(faq["a"].format(city=city_only, landmark=landmark))
+        items += f'{{"@type":"Question","name":"{q}","acceptedAnswer":{{"@type":"Answer","text":"{a}"}}}},'
+    return f'{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{items.rstrip(",")}]}}'
+
+
+def schema_breadcrumb():
+    """Generate BreadcrumbList schema."""
+    return f'{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"{esc_json(URL_BASE)}"}}]}}'
+
+
+def schema_blog_posts():
+    """Generate BlogPosting schemas for blog posts."""
+    items = ""
+    for title, filename, excerpt in BLOG_POSTS:
+        url = f"{URL_BASE}blog/{filename}"
+        etitle = esc_json(title)
+        eexcerpt = esc_json(excerpt)
+        items += f'{{"@type":"BlogPosting","headline":"{etitle}","url":"{esc_json(url)}","description":"{eexcerpt}"}},'
+    return items.rstrip(",")
+
+
+def build_og_tags(page_title, page_desc, url):
+    """Build Open Graph and Twitter Card meta tags."""
+    return f'''
+<meta property="og:type" content="website">
+<meta property="og:title" content="{esc_json(page_title)}">
+<meta property="og:description" content="{esc_json(page_desc)}">
+<meta property="og:url" content="{esc_json(url)}">
+<meta property="og:site_name" content="{esc_json(BRAND)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc_json(page_title)}">
+<meta name="twitter:description" content="{esc_json(page_desc)}">'''
+
+
+def build_ga_tag():
+    """Build Google Analytics 4 script if GA4_ID is set."""
+    if not GA4_ID:
+        return ""
+    return f'''
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA4_ID}');</script>'''
+
+
+def build_sitemap():
+    """Generate sitemap.xml content."""
+    today = time.strftime('%Y-%m-%d')
+    urls = [
+        (URL_BASE, today, "0.9", "daily"),
+    ]
+    for title, filename, excerpt in BLOG_POSTS:
+        urls.append((f"{URL_BASE}blog/{filename}", today, "0.7", "weekly"))
+    
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for loc, lastmod, priority, changefreq in urls:
+        xml += f'  <url><loc>{esc_json(loc)}</loc><lastmod>{lastmod}</lastmod><changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>\n'
+    xml += '</urlset>'
+    return xml
+
+
 def build_site(businesses):
     """Generate a premium directory site with client-side search/filter/sort."""
     
@@ -137,34 +273,61 @@ def build_site(businesses):
         etitle = esc(title)
         eexcerpt = esc(excerpt)
         blog_cards += f"""
-            <a href="blog/{filename}" class="blog-card">
+            <a href=\"blog/{filename}\" class=\"blog-card\">
                 <h3>{etitle}</h3>
                 <p>{eexcerpt}</p>
-                <span class="blog-read">Read More &#8594;</span>
+                <span class=\"blog-read\">Read More &#8594;</span>
             </a>"""
 
     city_state = f"{CITY}, {STATE}"
     city_only = CITY
     lower = NICHE.lower()
-    page_title = f"Best {NICHE}s in {city_state}"
-    page_desc = f"Find the best {lower}s in {city_state}. Top-rated, licensed, and insured {lower} services."
+    page_title = f"Best {NICHE}s in {city_state} | {BRAND}"
+    # Rich meta description with local keywords
+    page_desc = (f"Find the best {lower}s in {city_state}. "
+                 f"Top-rated, licensed & insured {lower} services near {REGION_LANDMARK}. "
+                 f"Compare {total} {lower}s with reviews, ratings & phone numbers. "
+                 f"24/7 emergency plumbing services available in {COUNTY}.")
+    keywords = f"{lower} {city_only}, plumbing {city_only}, {city_only} AZ {lower}, emergency {lower}, {city_only} plumbing company, {lower} near me, {city_only} {lower} 24/7"
 
-    # Build the HTML as a Python string using + for lines with braces
+    # Build JSON-LD schema
+    website_schema = "{" + schema_website() + "}"
+    faq_schema = schema_faq(city_only, REGION_LANDMARK)
+    breadcrumb_schema = schema_breadcrumb()
+    
+    # Build per-plumber LocalBusiness schemas
+    biz_schemas = []
+    for b in sorted_biz:
+        biz_schemas.append(schema_localbusiness(b))
+    local_biz_schemas = "[" + ",".join(biz_schemas) + "]"
+    
+    # Build full schema JSON-LD
+    jsonld = f'''<script type="application/ld+json">{website_schema}</script>
+<script type="application/ld+json">{faq_schema}</script>
+<script type="application/ld+json">{breadcrumb_schema}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@graph":{local_biz_schemas}}}</script>'''
+
+    # Build the HTML as a Python string
     html_lines = []
     html_lines.append('<!DOCTYPE html>')
-    html_lines.append('<html lang="en">')
+    html_lines.append(f'<html lang="en">')
     html_lines.append('<head>')
     html_lines.append('<meta charset="UTF-8">')
     html_lines.append('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
-    html_lines.append(f'<title>{page_title} | {BRAND}</title>')
-    html_lines.append(f'<meta name="description" content="{page_desc}">')
-    html_lines.append(f'<meta name="keywords" content="{lower} {city_only}, plumbing {city_only}, {city_only} AZ {lower}, emergency {lower}">')
+    html_lines.append(f'<title>{page_title}</title>')
+    html_lines.append(f'<meta name="description" content="{esc_json(page_desc)}">')
+    html_lines.append(f'<meta name="keywords" content="{esc_json(keywords)}">')
     html_lines.append(f'<link rel="canonical" href="{URL_BASE}">')
+    html_lines.append(build_og_tags(page_title, page_desc, URL_BASE))
+    if GSC_VERIFICATION:
+        html_lines.append(f'<meta name="google-site-verification" content="{GSC_VERIFICATION}">')
+    html_lines.append('</head>')
+    html_lines.append('<body>')
+    html_lines.append(jsonld)
+    html_lines.append(build_ga_tag())
     html_lines.append('<style>')
     html_lines.append(self_contained_css())
     html_lines.append('</style>')
-    html_lines.append('</head>')
-    html_lines.append('<body>')
     html_lines.append(nav_html(city_only))
     html_lines.append(hero_html(BRAND, NICHE, city_state, total, avg_rating))
     html_lines.append(filters_html(total))
@@ -295,18 +458,19 @@ def guide_section(niche, city_only, lower):
 <div><h3>2. Read Local Reviews</h3><p>{city_only} is a tight-knit community. Check Google reviews and ask neighbors. A {lower} with consistent 4+ star ratings and 50+ reviews has proven their reliability locally.</p></div>
 <div><h3>3. Get 3 Quotes</h3><p>For non-emergency work, always get multiple bids. Be wary of prices far below market rate. Most {city_only} plumbers offer free estimates.</p></div>
 <div><h3>4. Ask About Emergency Service</h3><p>A burst pipe at 2am needs immediate attention. Many {city_only} plumbers offer 24/7 service - confirm availability before you need it.</p></div>
-<div><h3>5. Know the Local Terrain</h3><p>Southern Arizona has unique plumbing challenges: hard water buildup, monsoon drainage issues, and slab foundations that complicate repiping. Local plumbers understand these conditions best.</p></div>
+<div><h3>5. Know the Local Terrain</h3><p>Southern Arizona has unique plumbing challenges: {REGION_FEATURES}. Local plumbers understand these conditions best.</p></div>
 </div></section>'''
 
 
 def faq_section(niche, lower, city_only):
-    return f'''<section class="section" id="faq"><h2 class="section-title">Frequently Asked Questions</h2><div class="section-subtle"><div class="faq-list">
-<div class="faq-item open"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How much does a {lower} cost in {city_only}?</div><div class="faq-a">Small repairs typically range from $150-400. Larger projects like water heater replacement run $800-2,500. Major repiping can cost $3,000-8,000. Always get a written estimate before work begins.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are the plumbers on this site licensed?</div><div class="faq-a">Yes. All plumbers listed are licensed and insured in the state of Arizona. We recommend verifying their ROC license number before hiring.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do {city_only} plumbers offer emergency service?</div><div class="faq-a">Many do. Plumbers serving Fort Huachuca and the surrounding area often provide 24/7 emergency call-out for burst pipes, sewer backups, and other urgent issues.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I know if I need a plumber or a handyman?</div><div class="faq-a">For minor tasks like replacing a faucet, a handyman may suffice. For work involving water lines, sewer lines, water heaters, or gas lines, always hire a licensed plumber.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How quickly can I get a plumber in {city_only}?</div><div class="faq-a">Most local plumbers offer same-day or next-day service. Emergency services arrive within 1-2 hours. Call times may vary during monsoon season or holidays.</div></div>
-</div></div></section>'''
+    items = ""
+    for faq in FAQ_DATA:
+        q = faq["q"].format(city=city_only, landmark=REGION_LANDMARK)
+        a = faq["a"].format(city=city_only, landmark=REGION_LANDMARK)
+        items += f'''<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">{q}</div><div class="faq-a">{a}</div></div>\n'''
+    # first item open by default
+    items = items.replace('class="faq-item"', 'class="faq-item open"', 1)
+    return f'''<section class="section" id="faq"><h2 class="section-title">Frequently Asked Questions</h2><div class="section-subtle"><div class="faq-list">{items}</div></div></section>'''
 
 
 def contact_section(email, city_only, lower):
@@ -315,7 +479,7 @@ def contact_section(email, city_only, lower):
 
 
 def footer_html(brand):
-    return f'''<footer><p>{brand} &mdash; Helping homeowner's find trusted plumbers in Cochise County</p><p style="margin-top:8px;">&copy; 2025 &middot; <a href="#listings">Browse Plumbers</a> &middot; <a href="#blog">Blog</a> &middot; <a href="#contact">Get a Quote</a></p></footer>'''
+    return f'''<footer><p>{brand} &mdash; Helping homeowners find trusted plumbers in {COUNTY}</p><p style="margin-top:8px;">&copy; 2025 &middot; <a href="#listings">Browse Plumbers</a> &middot; <a href="#blog">Blog</a> &middot; <a href="#contact">Get a Quote</a></p></footer>'''
 
 
 def js_code():
@@ -329,12 +493,47 @@ document.getElementById('searchInput').addEventListener('input',update);document
 '''
 
 
+# ─── STEP 3: Generate blog posts with Article schema ─────────────────────
+
+def add_article_schema_to_blog(html_file, title, description, url):
+    """Inject Article schema into a blog post HTML file."""
+    schema = f'''<script type="application/ld+json">{{
+"@context":"https://schema.org",
+"@type":"Article",
+"headline":"{esc_json(title)}",
+"description":"{esc_json(description)}",
+"url":"{esc_json(url)}",
+"datePublished":"{time.strftime('%Y-%m-%d')}",
+"dateModified":"{time.strftime('%Y-%m-%d')}",
+"author":{{"@type":"Organization","name":"{esc_json(BRAND)}"}},
+"publisher":{{"@type":"Organization","name":"{esc_json(BRAND)}"}}
+}}</script>'''
+    
+    with open(html_file, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Inject schema after <head> opening (before <style> or other head content)
+    if '<script type="application/ld+json"' not in content:
+        # Inject after the title/meta block, before </head>
+        content = content.replace('</head>', f'{schema}\n</head>', 1)
+        # Also inject OG tags
+        og_tags = f'''
+<meta property="og:type" content="article">
+<meta property="og:title" content="{esc_json(title)}">
+<meta property="og:description" content="{esc_json(description)}">
+<meta property="og:url" content="{esc_json(url)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc_json(title)}">
+<meta name="twitter:description" content="{esc_json(description)}">'''
+        content = content.replace('</head>', f'{og_tags}\n</head>', 1)
+        
+        with open(html_file, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+
 # ─── MAIN ───────────────────────────────────────────────────────────────
-
-def generate_blog_post(title, filename, city_only, state_abbr, niche):
-    """Generate a blog post HTML file. Override for specific content."""
-    pass  # We'll create these externally for now
-
 
 def main():
     print(f"Building directory: {NICHE}s in {CITY}, {STATE}")
@@ -371,7 +570,37 @@ def main():
         f.write(html)
     print(f"Built site: {INDEX_FILE}")
     
+    # Step 4: Generate sitemap.xml
+    sitemap = build_sitemap()
+    with open(SITEMAP_FILE, 'w') as f:
+        f.write(sitemap)
+    print(f"Generated sitemap: {SITEMAP_FILE}")
+    
+    # Step 5: Generate robots.txt
+    robots = f"User-agent: *\nAllow: /\nSitemap: {URL_BASE}sitemap.xml\n"
+    with open(ROBOTS_FILE, 'w') as f:
+        f.write(robots)
+    print(f"Generated robots.txt: {ROBOTS_FILE}")
+    
+    # Step 6: Add Article schema to blog posts
+    blog_count = 0
+    for title, filename, excerpt in BLOG_POSTS:
+        blog_path = BLOG_DIR / filename
+        if blog_path.exists():
+            blog_url = f"{URL_BASE}blog/{filename}"
+            if add_article_schema_to_blog(str(blog_path), title, excerpt, blog_url):
+                blog_count += 1
+    if blog_count:
+        print(f"Added Article schema to {blog_count} blog posts")
+    
     print(f"\nDone! {len(businesses)} {NICHE.lower()}s listed in {CITY}, {STATE}")
+    print(f"  - SEO schema (WebSite, LocalBusiness, FAQ, BreadcrumbList, BlogPosting)")
+    print(f"  - Open Graph + Twitter Cards")
+    print(f"  - sitemap.xml + robots.txt")
+    if GA4_ID:
+        print(f"  - Google Analytics (GA4: {GA4_ID})")
+    if GSC_VERIFICATION:
+        print(f"  - Google Search Console verified")
 
 
 if __name__ == "__main__":

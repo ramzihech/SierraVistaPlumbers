@@ -154,20 +154,6 @@
       "website": "http://huachucaplumbing.com/"
     },
     {
-      "name": "Roto-Rooter Sewer & Drain Service",
-      "address": "129 6th St, Sierra Vista, AZ 85635, USA",
-      "rating": 4.2,
-      "total_ratings": 35,
-      "place_id": "ChIJyXWZylMo14YR8L6cqXFeiBQ",
-      "types": [
-        "establishment",
-        "plumber",
-        "point_of_interest"
-      ],
-      "phone": "(520) 458-9296",
-      "website": "http://www.rotorootersewerndrainsvc.com/"
-    },
-    {
       "name": "Struse Plumbing & Air Inc",
       "address": "77 Calle Portal suite B 260K, Sierra Vista, AZ 85635, USA",
       "rating": 5,
@@ -180,6 +166,20 @@
       ],
       "phone": "(520) 226-9760",
       "website": ""
+    },
+    {
+      "name": "Roto-Rooter Sewer & Drain Service",
+      "address": "129 6th St, Sierra Vista, AZ 85635, USA",
+      "rating": 4.2,
+      "total_ratings": 35,
+      "place_id": "ChIJyXWZylMo14YR8L6cqXFeiBQ",
+      "types": [
+        "establishment",
+        "plumber",
+        "point_of_interest"
+      ],
+      "phone": "(520) 458-9296",
+      "website": "http://www.rotorootersewerndrainsvc.com/"
     },
     {
       "name": "Rite Way Heating, Cooling & Plumbing",
@@ -211,20 +211,6 @@
       "website": ""
     },
     {
-      "name": "Raul's Plumbing Llc",
-      "address": "Sierra Vista, AZ 85635, USA",
-      "rating": 3,
-      "total_ratings": 2,
-      "place_id": "ChIJ_____z8v14YRZIN-xNrJRjA",
-      "types": [
-        "establishment",
-        "plumber",
-        "point_of_interest"
-      ],
-      "phone": "(520) 226-9453",
-      "website": ""
-    },
-    {
       "name": "Qualified Comfort Air Conditioning and Heating",
       "address": "111 N Huachuca Blvd, Huachuca City, AZ 85616, USA",
       "rating": 4.9,
@@ -239,6 +225,20 @@
       ],
       "phone": "(520) 236-0585",
       "website": "https://qualifiedcomforthvac.com/"
+    },
+    {
+      "name": "Raul's Plumbing Llc",
+      "address": "Sierra Vista, AZ 85635, USA",
+      "rating": 3,
+      "total_ratings": 2,
+      "place_id": "ChIJ_____z8v14YRZIN-xNrJRjA",
+      "types": [
+        "establishment",
+        "plumber",
+        "point_of_interest"
+      ],
+      "phone": "(520) 226-9453",
+      "website": ""
     },
     {
       "name": "Precision Plumbing",
