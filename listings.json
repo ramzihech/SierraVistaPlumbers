@@ -211,6 +211,20 @@
       "website": ""
     },
     {
+      "name": "Precision Plumbing",
+      "address": "7024 Valley Dr, Sierra Vista, AZ 85650, USA",
+      "rating": 4.2,
+      "total_ratings": 5,
+      "place_id": "ChIJWwMxvUcs14YRy1E8kB3tcuY",
+      "types": [
+        "establishment",
+        "plumber",
+        "point_of_interest"
+      ],
+      "phone": "(520) 378-7071",
+      "website": ""
+    },
+    {
       "name": "Prestige Remodeling & Restoration, LLC",
       "address": "106 N 2nd St, Sierra Vista, AZ 85635, USA",
       "rating": 4.9,
@@ -230,20 +244,6 @@
       "website": "http://www.prestigesierravista.com/"
     },
     {
-      "name": "Precision Plumbing",
-      "address": "7024 Valley Dr, Sierra Vista, AZ 85650, USA",
-      "rating": 4.2,
-      "total_ratings": 5,
-      "place_id": "ChIJWwMxvUcs14YRy1E8kB3tcuY",
-      "types": [
-        "establishment",
-        "plumber",
-        "point_of_interest"
-      ],
-      "phone": "(520) 378-7071",
-      "website": ""
-    },
-    {
       "name": "Qualified Comfort Air Conditioning and Heating",
       "address": "111 N Huachuca Blvd, Huachuca City, AZ 85616, USA",
       "rating": 4.9,
@@ -258,6 +258,20 @@
       ],
       "phone": "(520) 236-0585",
       "website": "https://qualifiedcomforthvac.com/"
+    },
+    {
+      "name": "Raul's Plumbing Llc",
+      "address": "Sierra Vista, AZ 85635, USA",
+      "rating": 3,
+      "total_ratings": 2,
+      "place_id": "ChIJ_____z8v14YRZIN-xNrJRjA",
+      "types": [
+        "establishment",
+        "plumber",
+        "point_of_interest"
+      ],
+      "phone": "(520) 226-9453",
+      "website": ""
     }
   ]
 }
