@@ -2,7 +2,7 @@
   "city": "Sierra Vista",
   "state": "AZ",
   "niche": "Plumber",
-  "updated": "2026-06-06",
+  "updated": "2026-06-07",
   "businesses": [
     {
       "name": "Struse Plumbing & Air Inc",
@@ -35,20 +35,6 @@
       "website": "https://sierravistaplumbing.com/"
     },
     {
-      "name": "Eagle Plumbing 1 LLC",
-      "address": "87 W Camino De Mesa, Huachuca City, AZ 85616, USA",
-      "rating": 4.7,
-      "total_ratings": 162,
-      "place_id": "ChIJTZ8aW30d14YRRotf-1EpY8w",
-      "types": [
-        "establishment",
-        "plumber",
-        "point_of_interest"
-      ],
-      "phone": "(520) 720-4675",
-      "website": "https://www.eagleplumbingaz.com/"
-    },
-    {
       "name": "Integrity Plumbing Solutions",
       "address": "5138 Galileo Dr, Sierra Vista, AZ 85635, USA",
       "rating": 5,
@@ -64,10 +50,24 @@
       "website": "https://integrityplumbingsolutionsaz.com/"
     },
     {
+      "name": "Eagle Plumbing 1 LLC",
+      "address": "87 W Camino De Mesa, Huachuca City, AZ 85616, USA",
+      "rating": 4.7,
+      "total_ratings": 162,
+      "place_id": "ChIJTZ8aW30d14YRRotf-1EpY8w",
+      "types": [
+        "establishment",
+        "plumber",
+        "point_of_interest"
+      ],
+      "phone": "(520) 720-4675",
+      "website": "https://www.eagleplumbingaz.com/"
+    },
+    {
       "name": "Rite Way Heating, Cooling & Plumbing: Sierra Vista",
       "address": "131 S Schrader Rd, Sierra Vista, AZ 85635, USA",
       "rating": 4.8,
-      "total_ratings": 1128,
+      "total_ratings": 1127,
       "place_id": "ChIJMXXKrNou14YRHlFL4-fdVMc",
       "types": [
         "electrician",
@@ -154,20 +154,6 @@
       "website": "http://huachucaplumbing.com/"
     },
     {
-      "name": "Struse Plumbing & Air Inc",
-      "address": "77 Calle Portal suite B 260K, Sierra Vista, AZ 85635, USA",
-      "rating": 5,
-      "total_ratings": 5,
-      "place_id": "ChIJXQjemnQp14YR1xQkjLb7Hmo",
-      "types": [
-        "establishment",
-        "plumber",
-        "point_of_interest"
-      ],
-      "phone": "(520) 226-9760",
-      "website": ""
-    },
-    {
       "name": "Roto-Rooter Sewer & Drain Service",
       "address": "129 6th St, Sierra Vista, AZ 85635, USA",
       "rating": 4.2,
@@ -182,10 +168,24 @@
       "website": "http://www.rotorootersewerndrainsvc.com/"
     },
     {
+      "name": "Struse Plumbing & Air Inc",
+      "address": "77 Calle Portal suite B 260K, Sierra Vista, AZ 85635, USA",
+      "rating": 5,
+      "total_ratings": 5,
+      "place_id": "ChIJXQjemnQp14YR1xQkjLb7Hmo",
+      "types": [
+        "establishment",
+        "plumber",
+        "point_of_interest"
+      ],
+      "phone": "(520) 226-9760",
+      "website": ""
+    },
+    {
       "name": "Rite Way Heating, Cooling & Plumbing",
       "address": "4551 S Alvernon Way, Tucson, AZ 85714, USA",
       "rating": 4.9,
-      "total_ratings": 12793,
+      "total_ratings": 12795,
       "place_id": "ChIJFQweybNv1oYRN6uaSvM_Ckk",
       "types": [
         "establishment",
@@ -211,34 +211,23 @@
       "website": ""
     },
     {
-      "name": "Qualified Comfort Air Conditioning and Heating",
-      "address": "111 N Huachuca Blvd, Huachuca City, AZ 85616, USA",
+      "name": "Prestige Remodeling & Restoration, LLC",
+      "address": "106 N 2nd St, Sierra Vista, AZ 85635, USA",
       "rating": 4.9,
-      "total_ratings": 120,
-      "place_id": "ChIJL99iWhbZ1oYRueYkv9H5Lw0",
+      "total_ratings": 30,
+      "place_id": "ChIJBae5nPsp14YR9uNMBO5SGCw",
       "types": [
         "electrician",
         "establishment",
         "general_contractor",
+        "home_goods_store",
+        "painter",
         "plumber",
-        "point_of_interest"
+        "point_of_interest",
+        "store"
       ],
-      "phone": "(520) 236-0585",
-      "website": "https://qualifiedcomforthvac.com/"
-    },
-    {
-      "name": "Raul's Plumbing Llc",
-      "address": "Sierra Vista, AZ 85635, USA",
-      "rating": 3,
-      "total_ratings": 2,
-      "place_id": "ChIJ_____z8v14YRZIN-xNrJRjA",
-      "types": [
-        "establishment",
-        "plumber",
-        "point_of_interest"
-      ],
-      "phone": "(520) 226-9453",
-      "website": ""
+      "phone": "(520) 263-4876",
+      "website": "http://www.prestigesierravista.com/"
     },
     {
       "name": "Precision Plumbing",
@@ -255,18 +244,20 @@
       "website": ""
     },
     {
-      "name": "Harvey Plumbing, Inc.",
-      "address": "5100 East AZ-90 E, Sierra Vista, AZ 85635, USA",
-      "rating": 3,
-      "total_ratings": 2,
-      "place_id": "ChIJq6qqqqrT0IYRPE70LKrSbNg",
+      "name": "Qualified Comfort Air Conditioning and Heating",
+      "address": "111 N Huachuca Blvd, Huachuca City, AZ 85616, USA",
+      "rating": 4.9,
+      "total_ratings": 120,
+      "place_id": "ChIJL99iWhbZ1oYRueYkv9H5Lw0",
       "types": [
+        "electrician",
         "establishment",
+        "general_contractor",
         "plumber",
         "point_of_interest"
       ],
-      "phone": "(520) 378-3154",
-      "website": "http://www.harveyplumbing.com/"
+      "phone": "(520) 236-0585",
+      "website": "https://qualifiedcomforthvac.com/"
     }
   ]
 }
